@@ -22,7 +22,7 @@
                         <h5 class="card-title">{{ $curso->title }}</h5>
                         <p class="card-text">{{ $curso->content}}</p>
                         <p class="card-text">{{ $curso->price}}</p>
-                        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit"> <a href="/buyer/{{ $curso->id}}/show" class="nav-link">Comprar</a></button>
+                        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit"> <a href="/buyer/{{ $curso->id}}/show" class="nav-link">Contratar</a></button>
                     </div>
                 </div>
             </div>

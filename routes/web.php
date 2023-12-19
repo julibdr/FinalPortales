@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\BuyerController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShowEstadisticaController;
 
 
 Route::resource('registro_admin', UsersController::class);
@@ -33,6 +34,7 @@ Route::get('/index', [ShowHomeController::class, 'index']);
 Route::get('/blog', [ArticlesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/show_profile', [ShowProfileController::class, 'index']);
+Route::get('/show_estadisticas', [ShowEstadisticaController::class, 'index']);
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/login_admin');
