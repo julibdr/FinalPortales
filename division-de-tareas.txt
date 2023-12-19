@@ -1,0 +1,22 @@
+División de tareas
+
+Alvarez Ailen
+ 
+Diseño de la estructura de la base de datos
+Creación de migraciones
+Configuración de la conexión
+Alta de los artículos
+Creación del Modelo
+
+
+Bariandaran Julieta
+Desarrollo del sitio web público
+Implementación del sitio web privado
+Baja y modificación 
+
+
+Ambas:
+Integración de las rutas y vistas
+
+
+
