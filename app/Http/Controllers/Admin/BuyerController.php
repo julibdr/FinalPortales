@@ -57,9 +57,9 @@ class BuyerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Curso $curso)
+    public function edit(Request $request, $id)
     {
-
+        $curso = Curso::find($id);
         return view('admin.editar_cursos', ['curso' => $curso]);
     }
 
@@ -88,8 +88,9 @@ class BuyerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Curso $curso)
+    public function destroy(Request $request, $id)
     {
+        $curso = Curso::find($id);
         if ($curso) {
 
             $curso->delete();
