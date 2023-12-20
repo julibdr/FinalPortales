@@ -31,10 +31,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-    public function contrataciones()
-    {
-        return $this->hasMany(Contratacion::class);
-    }
+
+  public function cursosContratados()
+  {
+      return $this->belongsToMany(Curso::class, 'contratacions', 'user_id', 'curso_id')
+          ->select('cursos.id as curso_id', 'cursos.title', 'cursos.content', 'cursos.price', 'cursos.created_at')
+          ->withTimestamps();
+  }
+
     /**
      * The attributes that should be hidden for serialization.
      *

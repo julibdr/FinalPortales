@@ -23,21 +23,13 @@ Route::resource('crear_profiles', ProfilesController::class);
 Route::resource('profile', ShowProfileController::class);
 Route::resource('buyer', BuyerController::class)->middleware('auth');
 Route::resource('articles', AdminArticlesController::class)->middleware('auth');
+Route::resource('show_estadisticas', ShowEstadisticaController::class);
+
 
 Route::get('login_admin', [LoginController::class, 'index'])->name('login');
 Route::post('login_admin', [LoginController::class, 'loginAdmin']);
+Route::post('confirmacion', [ShowEstadisticaController::class, 'confirmar']);
 
-Route::post('/confirmacion', function () {
-    // Validar y procesar la contratación
-    // Aquí puedes guardar la información en la base de datos u otro almacenamiento
-
-    $cursoId = request()->input('curso_id');
-    $user = auth()->user();
-    $curso = \App\Models\Curso::find($cursoId);
-
-    // Redirigir a la página de éxito con los datos necesarios
-    return view('confirmacion', ['user' => $user, 'curso' => $curso]);
-});
 
 //Vistas simples
 Route::get('/', [ShowHomeController::class, 'index']);
@@ -45,7 +37,7 @@ Route::get('/index', [ShowHomeController::class, 'index']);
 Route::get('/blog', [ArticlesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/show_profile', [ShowProfileController::class, 'index']);
-Route::get('/show_estadisticas', [ShowEstadisticaController::class, 'index']);
+
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/login_admin');

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Curso;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ShowEstadisticaController extends Controller
 {
     /**
@@ -14,23 +14,37 @@ class ShowEstadisticaController extends Controller
      */
     public function index()
 {
-    $user = auth()->user();
-    $curso = $user->contratacion;
-    
-    return view('admin.show_estadisticas', ['user' => $user, 'curso' => $curso]);
 
-    // if ($user) {
-    //     // Obtén el perfil asociado al usuario
-    //     $curso = $user->curso;
+    $estadisticasPorDia = $this->obtenerEstadisticasUsuariosContratacionesPorDia();
 
-    //     // Pasa el perfil a la vista
-    //     // return view('admin.show_estadisticas', ['user' => $user, 'curso' => $curso]);
-    // }
-
+    return view('admin.show_estadisticas', compact('estadisticasPorDia'));
    
 }
 
-    
+
+public function obtenerEstadisticasUsuariosContratacionesPorDia()
+{
+    $estadisticasPorDia = User::with(['cursosContratados:id,title,content,price,created_at'])
+        ->select(DB::raw('DATE(created_at) as fecha_registro'), DB::raw('COUNT(*) as total_usuarios'))
+        ->groupBy('fecha_registro')
+        ->orderBy('fecha_registro')
+        ->get();
+
+    return $estadisticasPorDia;
+}
+
+
+public function confirmar()
+{
+    $cursoId = request()->input('curso_id');
+    $userId = request()->input('user_id');
+    $user = Auth::user();
+    $curso = Curso::find($cursoId);
+
+    // Puedes validar y procesar la contratación aquí antes de redirigir
+
+    return view('confirmacion', ['user' => $user, 'curso' => $curso]);
+}
 
     /**
      * Show the form for creating a new resource.

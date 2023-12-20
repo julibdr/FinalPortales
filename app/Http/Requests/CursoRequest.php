@@ -24,7 +24,7 @@ class CursoRequest extends FormRequest
         return [
             'title' => 'required|string|max:605',
             'content' => 'required|string',
-            'price' => 'required|max:10',
+            'price' => 'required|numeric',
         ];
     }
 
@@ -35,7 +35,7 @@ class CursoRequest extends FormRequest
             'title.max' => 'El título no debe tener más de 605 caracteres.',
             'content.required' => 'La descripción es requerida.',
             'price.required' => 'El precio es obligatorio.',
-            'price.max' => 'El precio no debe tener más de 10 caracteres.',
+            'price.numeric' => 'El precio debe ser un número',
 
         ];
     }

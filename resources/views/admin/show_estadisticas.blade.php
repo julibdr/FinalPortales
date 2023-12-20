@@ -3,27 +3,26 @@
 </header>
 
 
-<div class="card mt-4 mb-4 m-5" style="width: 22rem;">
-    @if($user)
-        <div class="card-body">
-            <h5 class="card-title">Mi perfil</h5>
-            <p class="card-text">Email del usuario: {{ $user->email }}</p>
-        </div>
-
-        @if($user->contratacion)
-            @foreach ($curso as $cursoItem)
-                <div class="card-body">
-                    <p class="card-text">Nombre del curso: {{ $cursoItem->title }}</p>
-                    <p class="card-text">Contenido del curso: {{ $cursoItem->content }}</p>
-                </div>
-            @endforeach
+<div class="card mt-4 mb-4 m-3 p-3 mx-auto" style="width: 25rem;">
+    @foreach($estadisticasPorDia as $estadistica)
+        <p>Fecha: {{ $estadistica->fecha_registro }}, Usuarios Registrados: {{ $estadistica->total_usuarios }}</p>
+    
+        @if($estadistica->cursosContratados)
+            <ul>
+                @foreach($estadistica->cursosContratados as $curso)
+                    <li>Curso Contratado - {{ $curso->title }}</li>
+                    <li>Contenido: {{ $curso->content }}</li>
+                    <li>Precio: {{ $curso->price }}</li>
+                @endforeach
+            </ul>
         @else
-            <p>No hay cursos contratados.</p>
+            <p>No hay cursos contratados en esta fecha.</p>
         @endif
-    @else
-        <p>No está disponible el perfil.</p>
-    @endif
+    @endforeach
 </div>
+
+
+
 
 <footer id="footer" class="footer">
     @include('footer')

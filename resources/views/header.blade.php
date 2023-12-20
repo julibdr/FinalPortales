@@ -26,7 +26,6 @@
         <li class="nav-item"><a href="registro_admin" class="nav-link">Ingreso</a></li>
         @endguest
         @auth  
-     
         <li class="nav-item"><a href="/show_estadisticas" class="nav-link mt-1 fs-5"><i class="bi bi-bar-chart-line"></i></a></li>
         <li class="nav-item"><a href="/buyer" class="nav-link mt-1 fs-5"><i class="bi bi-mortarboard"></i></a></li>
         <li class="nav-item"><a href="/articles" class="nav-link mt-1 fs-5"><i class="bi bi-pencil-square"></i></a></li>
