@@ -13,8 +13,6 @@ class ConfirmacionController extends Controller
      */
     public function index(Request $request)
     {
-        // Validar y procesar la contratación
-        // ...
     
         $user = Auth::user();
         $curso = $user->Contratacion;

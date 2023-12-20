@@ -19,16 +19,12 @@ public function index()
 {
     $user = Auth::user();
 
-    // Verifica si el usuario está autenticado
     if ($user) {
-        // Obtén el perfil asociado al usuario
+
         $profile = $user->profile;
 
-        // Pasa el perfil a la vista
         return view('admin.show_profile', ['profile' => $profile , 'user' => $user]);
     }
-
-    // Si el usuario no está autenticado, puedes redirigirlo a la página de inicio de sesión u otra página
     return redirect('/login_admin');
     // $profiles = Profile::all();
     // return view('admin.show_profile', ['profiles' => $profiles]);
@@ -76,14 +72,12 @@ public function index()
     {
         $profile = Profile::find($id);
     
-        // Asegúrate de que el perfil exista
         if (!$profile) {
             return redirect('/registro_admin')->with('error', 'Perfil no encontrado');
         }
     
         $user = $profile->user;
     
-        // Asegúrate de que el usuario exista
         if (!$user) {
             return redirect('/registro_admin')->with('error', 'Usuario no encontrado');
         }

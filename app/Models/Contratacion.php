@@ -14,10 +14,8 @@ class Contratacion extends Model
         "curso_id",
         "user_id",
     ];
-    // Otras propiedades y métodos del modelo Contratacion...
 
     /**
-     * Define la relación inversa con el usuario.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -27,7 +25,6 @@ class Contratacion extends Model
     }
 
     /**
-     * Define la relación inversa con el curso.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

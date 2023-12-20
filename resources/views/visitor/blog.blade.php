@@ -31,12 +31,7 @@
             </div>
         @endforeach
     </div>
-
-  
 </section>
-
-
-
 
 <footer id="footer" class="footer">
   <!-- ======= Footer ======= -->

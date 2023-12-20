@@ -24,7 +24,7 @@ class CreateUser extends FormRequest
         return [
             'nombre' => 'required|string|max:50',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:8|max:25',
+            'password' => 'required|string|min:4|max:25',
         ];
     }
 
@@ -37,7 +37,7 @@ class CreateUser extends FormRequest
             'email.email' => 'El email debe ser válido.',
             'email.unique' => 'Ya existe un usuario con ese email.',
             'password.required' => 'La contraseña es obligatoria.',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.min' => 'La contraseña debe tener al menos 4 caracteres.',
             'password.max' => 'La contraseña no debe tener más de 25 caracteres.',
 
         ];

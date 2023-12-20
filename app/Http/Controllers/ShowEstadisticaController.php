@@ -50,7 +50,6 @@ public function confirmar()
         'user_id' => $user->id,
         
     ]);
-    // Puedes validar y procesar la contratación aquí antes de redirigir
 
     return view('confirmacion', ['user' => $user, 'curso' => $curso]);
 }
