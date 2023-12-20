@@ -18,8 +18,12 @@ class ShowEstadisticaController extends Controller
     $contrataciones = Contratacion::all();
     $estadisticasPorDia = $this->obtenerEstadisticasUsuariosContratacionesPorDia();
 // return $contrataciones;
+
+     if(auth()->user()->role == 'admin'){
     return view('admin.show_estadisticas', compact('estadisticasPorDia', 'contrataciones'));
-   
+        }else{
+            return redirect('/login_admin');
+        }
 }
 
 

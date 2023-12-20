@@ -16,7 +16,11 @@ class BuyerController extends Controller
     public function index()
     {
         $cursos = Curso::all();
+        if(auth()->user()->role == 'admin'){
         return view('admin.buyer', compact('cursos'));
+            }else{
+                return redirect('/login_admin');
+            }
     // return view('admin.buyer', ['cursos'=>$curso]);
     }
 
@@ -42,8 +46,11 @@ class BuyerController extends Controller
         ]);
         $curso->save();
     
-
+        if(auth()->user()->role == 'admin'){
         return redirect('/buyer')->with('success', 'Curso creado exitosamente');
+        }else{
+            return redirect('/login_admin');
+        }
     }
 
     /**
@@ -59,8 +66,12 @@ class BuyerController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $curso = Curso::find($id);
-        return view('admin.editar_cursos', ['curso' => $curso]);
+        if(auth()->user()->role == 'admin'){
+            $curso = Curso::find($id);
+            return view('admin.editar_cursos', ['curso' => $curso]);
+        }else{
+            return redirect('/login_admin');
+        }
     }
 
     /**
@@ -82,7 +93,11 @@ class BuyerController extends Controller
     
         $curso->update($data);
      
-        return redirect('/buyer')->with('success', 'Curso actualizado exitosamente');
+        if(auth()->user()->role == 'admin'){
+            return redirect('/buyer')->with('success', 'Curso actualizado exitosamente');
+        }else{
+            return redirect('/login_admin');
+        }
     }
 
     /**
@@ -90,11 +105,15 @@ class BuyerController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $curso = Curso::find($id);
-        if ($curso) {
+        if(auth()->user()->role == 'admin'){
+            $curso = Curso::find($id);
+            if ($curso) {
 
-            $curso->delete();
+                $curso->delete();
+            }
+            return redirect('/buyer')->with('danger', 'Curso eliminado exitosamente');
+        }else{
+            return redirect('/login_admin');
         }
-        return redirect('/buyer')->with('danger', 'Curso eliminado exitosamente');
     }
 }

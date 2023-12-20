@@ -26,8 +26,11 @@
         <li class="nav-item"><a href="registro_admin" class="nav-link">Ingreso</a></li>
         @endguest
         @auth  
-        <li class="nav-item"><a href="/show_estadisticas" class="nav-link mt-1 fs-5"><i class="bi bi-bar-chart-line"></i></a></li>
-        <li class="nav-item"><a href="/buyer" class="nav-link mt-1 fs-5"><i class="bi bi-mortarboard"></i></a></li>
+        @if(auth()->user()->role == 'admin')
+          <li class="nav-item"><a href="/show_estadisticas" class="nav-link mt-1 fs-5"><i class="bi bi-bar-chart-line"></i></a></li>
+          <li class="nav-item"><a href="/buyer" class="nav-link mt-1 fs-5"><i class="bi bi-mortarboard"></i></a></li>
+        @endif
+
         <li class="nav-item"><a href="/articles" class="nav-link mt-1 fs-5"><i class="bi bi-pencil-square"></i></a></li>
         <li class="nav-item"><a href="/show_profile" class="nav-link mt-1 fs-5"><i class="bi bi-person-gear"></i></a></li>
         <li class="nav-item"><a href="/logout" class="nav-link mt-1 fs-5"><i class="bi bi-box-arrow-right"></i></a></li>@endauth
