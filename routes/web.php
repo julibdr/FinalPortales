@@ -27,6 +27,17 @@ Route::resource('articles', AdminArticlesController::class)->middleware('auth');
 Route::get('login_admin', [LoginController::class, 'index'])->name('login');
 Route::post('login_admin', [LoginController::class, 'loginAdmin']);
 
+Route::post('/confirmacion', function () {
+    // Validar y procesar la contratación
+    // Aquí puedes guardar la información en la base de datos u otro almacenamiento
+
+    $cursoId = request()->input('curso_id');
+    $user = auth()->user();
+    $curso = \App\Models\Curso::find($cursoId);
+
+    // Redirigir a la página de éxito con los datos necesarios
+    return view('confirmacion', ['user' => $user, 'curso' => $curso]);
+});
 
 //Vistas simples
 Route::get('/', [ShowHomeController::class, 'index']);

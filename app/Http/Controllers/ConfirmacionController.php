@@ -1,35 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth; 
 use App\Models\Curso;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ShowEstadisticaController extends Controller
+class ConfirmacionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-{
-    $user = auth()->user();
-    $curso = $user->contratacion;
+    public function index(Request $request)
+    {
+        // Validar y procesar la contratación
+        // ...
     
-    return view('admin.show_estadisticas', ['user' => $user, 'curso' => $curso]);
-
-    // if ($user) {
-    //     // Obtén el perfil asociado al usuario
-    //     $curso = $user->curso;
-
-    //     // Pasa el perfil a la vista
-    //     // return view('admin.show_estadisticas', ['user' => $user, 'curso' => $curso]);
-    // }
-
-   
-}
-
+        $user = Auth::user();
+        $curso = $user->Contratacion;
+        return view('admin.show_estadisticas', ['curso' => $cursos]);
+      
+    }
     
 
     /**
@@ -53,7 +44,7 @@ class ShowEstadisticaController extends Controller
      */
     public function show(string $id)
     {
-      
+        //
     }
 
     /**

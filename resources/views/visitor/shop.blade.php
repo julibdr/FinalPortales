@@ -22,7 +22,13 @@
                         <h5 class="card-title">{{ $curso->title }}</h5>
                         <p class="card-text">{{ $curso->content}}</p>
                         <p class="card-text">{{ $curso->price}}</p>
-                        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit"> <a href="/buyer/{{ $curso->id}}/show" class="nav-link">Contratar</a></button>
+                        <form method="POST" action="/confirmacion">
+    @csrf
+    <input type="hidden" name="curso_id" value="{{ $curso->id }}">
+    <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Contratar</button>
+</form>
+
+                        <!-- <button class="w-100 btn btn-lg btn-primary mb-3" type="submit"> <a href="/buyer/{{ $curso->id}}/show" class="nav-link">Contratar</a></button> -->
                     </div>
                 </div>
             </div>
