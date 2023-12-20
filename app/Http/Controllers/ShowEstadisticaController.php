@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth; 
 use App\Models\Curso;
 use App\Models\User;
+use App\Models\Contratacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ShowEstadisticaController extends Controller
@@ -14,10 +15,10 @@ class ShowEstadisticaController extends Controller
      */
     public function index()
 {
-
+    $contrataciones = Contratacion::all();
     $estadisticasPorDia = $this->obtenerEstadisticasUsuariosContratacionesPorDia();
-
-    return view('admin.show_estadisticas', compact('estadisticasPorDia'));
+// return $contrataciones;
+    return view('admin.show_estadisticas', compact('estadisticasPorDia', 'contrataciones'));
    
 }
 
@@ -37,10 +38,14 @@ public function obtenerEstadisticasUsuariosContratacionesPorDia()
 public function confirmar()
 {
     $cursoId = request()->input('curso_id');
-    $userId = request()->input('user_id');
     $user = Auth::user();
     $curso = Curso::find($cursoId);
 
+    $contratacion = Contratacion::create([
+        'curso_id' =>  $cursoId,
+        'user_id' => $user->id,
+        
+    ]);
     // Puedes validar y procesar la contratación aquí antes de redirigir
 
     return view('confirmacion', ['user' => $user, 'curso' => $curso]);
